@@ -1,8 +1,8 @@
-﻿using BudgeBuddyProject.Models.Data;
-using BudgeBuddyProject.Models.Maps;
+﻿using BudgeBuddyProject.Data.EntityData;
+using BudgeBuddyProject.Data.EntityMaps;
 using Microsoft.EntityFrameworkCore;
 
-namespace BudgeBuddyProject.Models.Context
+namespace BudgeBuddyProjects.Data.Context
 {
     public class ApplicationDbContext : DbContext
     {
@@ -10,6 +10,11 @@ namespace BudgeBuddyProject.Models.Context
         public DbSet<UserData> UserDatas { get; set; }
         public DbSet<TransactionalDescriptionData> TransactionalDescriptionDatas { get; set; }
         public DbSet<FixedBillData> FixedBillDatas { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+          : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,11 +24,6 @@ namespace BudgeBuddyProject.Models.Context
             modelBuilder.ApplyConfiguration(new FixedBillMap());
             modelBuilder.ApplyConfiguration(new TransactionalDescriptionMap());
             modelBuilder.ApplyConfiguration(new UserMap());
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("YourConnectionStringHere"); // Coloque sua string de conexão aqui
         }
     }
 }

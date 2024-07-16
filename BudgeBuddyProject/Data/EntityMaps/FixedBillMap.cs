@@ -1,8 +1,8 @@
-﻿using BudgeBuddyProject.Models.Data;
+﻿using BudgeBuddyProject.Data.EntityData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BudgeBuddyProject.Models.Maps
+namespace BudgeBuddyProject.Data.EntityMaps
 {
     public class FixedBillMap : IEntityTypeConfiguration<FixedBillData>
     {

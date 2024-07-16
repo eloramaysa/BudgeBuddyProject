@@ -1,4 +1,4 @@
-﻿namespace BudgeBuddyProject.Models.Data
+﻿namespace BudgeBuddyProject.Data.EntityData
 {
     public class TransactionalDescriptionData : AuthData
     {

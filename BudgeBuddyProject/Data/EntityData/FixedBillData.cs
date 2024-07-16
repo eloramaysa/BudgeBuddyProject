@@ -1,6 +1,6 @@
 ﻿using Dapper.Contrib.Extensions;
 
-namespace BudgeBuddyProject.Models.Data
+namespace BudgeBuddyProject.Data.EntityData
 {
     public class FixedBillData : AuthData
     {
