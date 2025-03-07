@@ -8,13 +8,10 @@ namespace BudgeBuddyProject.Data.EntityMaps
     {
         public void Configure(EntityTypeBuilder<UserData> builder)
         {
-            // Tabela
             builder.ToTable("User");
 
-            // Chave primária
             builder.HasKey(ud => ud.Id);
 
-            // Propriedades
             builder.Property(ud => ud.Name)
                    .IsRequired()
                    .HasMaxLength(100);
@@ -23,7 +20,7 @@ namespace BudgeBuddyProject.Data.EntityMaps
                    .IsRequired()
                    .HasMaxLength(100);
 
-            builder.Property(ud => ud.Senha)
+            builder.Property(ud => ud.Password)
                    .IsRequired()
                    .HasMaxLength(100);
 
@@ -33,6 +30,9 @@ namespace BudgeBuddyProject.Data.EntityMaps
 
             builder.Property(ud => ud.Active)
                    .IsRequired();
+
+            builder.Property(ud => ud.AllowdSendEmail)
+                  .IsRequired();
 
             builder.Property(ud => ud.CreatedDate)
                    .IsRequired();

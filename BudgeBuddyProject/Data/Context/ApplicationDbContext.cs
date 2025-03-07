@@ -10,6 +10,7 @@ namespace BudgeBuddyProjects.Data.Context
         public DbSet<UserData> UserDatas { get; set; }
         public DbSet<TransactionalDescriptionData> TransactionalDescriptionDatas { get; set; }
         public DbSet<FixedBillData> FixedBillDatas { get; set; }
+        public DbSet<BudgeTargetData> BudgeTargetDatas { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
           : base(options)
@@ -24,6 +25,10 @@ namespace BudgeBuddyProjects.Data.Context
             modelBuilder.ApplyConfiguration(new FixedBillMap());
             modelBuilder.ApplyConfiguration(new TransactionalDescriptionMap());
             modelBuilder.ApplyConfiguration(new UserMap());
+
+            modelBuilder.Entity<FixedBillData>()
+            .Property(c => c.UserId)
+            .ValueGeneratedNever();
         }
     }
 }

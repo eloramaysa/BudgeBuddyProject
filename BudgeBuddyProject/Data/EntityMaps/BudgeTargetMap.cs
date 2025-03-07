@@ -8,13 +8,10 @@ namespace BudgeBuddyProject.Data.EntityMaps
     {
         public void Configure(EntityTypeBuilder<BudgeTargetData> builder)
         {
-            // Tabela
             builder.ToTable("BudgeTarget");
 
-            // Chave primária
             builder.HasKey(b => b.Id);
 
-            // Propriedades
             builder.Property(b => b.UserId)
                    .IsRequired();
 

@@ -8,13 +8,10 @@ namespace BudgeBuddyProject.Data.EntityMaps
     {
         public void Configure(EntityTypeBuilder<FinancialTransactionsData> builder)
         {
-            // Tabela
             builder.ToTable("FinancialTransactions");
 
-            // Chave primária
             builder.HasKey(ft => ft.Id);
 
-            // Propriedades
             builder.Property(ft => ft.UserId)
                    .IsRequired();
 

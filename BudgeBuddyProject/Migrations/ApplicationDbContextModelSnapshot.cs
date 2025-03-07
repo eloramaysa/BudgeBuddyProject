@@ -141,7 +141,7 @@ namespace BudgeBuddyProject.Migrations
                     b.Property<int>("ExpireDate")
                         .HasColumnType("int");
 
-                    b.Property<int>("ExpireMonth")
+                    b.Property<int?>("ExpireMonth")
                         .HasColumnType("int");
 
                     b.Property<bool>("NotificationSent")
@@ -195,7 +195,12 @@ namespace BudgeBuddyProject.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("TransactionalDescription", (string)null);
                 });
@@ -207,6 +212,9 @@ namespace BudgeBuddyProject.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AllowdSendEmail")
                         .HasColumnType("bit");
 
                     b.Property<string>("CreatedBy")
@@ -232,7 +240,7 @@ namespace BudgeBuddyProject.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Senha")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -288,6 +296,17 @@ namespace BudgeBuddyProject.Migrations
                 });
 
             modelBuilder.Entity("BudgeBuddyProject.Data.EntityData.FixedBillData", b =>
+                {
+                    b.HasOne("BudgeBuddyProject.Data.EntityData.UserData", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BudgeBuddyProject.Data.EntityData.TransactionalDescriptionData", b =>
                 {
                     b.HasOne("BudgeBuddyProject.Data.EntityData.UserData", "User")
                         .WithMany()

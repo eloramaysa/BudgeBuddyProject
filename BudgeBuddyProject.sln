@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgeBuddyProject", "BudgeBuddyProject\BudgeBuddyProject.csproj", "{81B96920-6058-4132-93AD-8AD5FE485BD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgeBuddyProject", "BudgeBuddyProject\BudgeBuddyProject.csproj", "{81B96920-6058-4132-93AD-8AD5FE485BD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgeBuddyPoject.test", "BudgeBuddyPoject.test\BudgeBuddyPoject.test.csproj", "{802A6F63-ABA8-4B2A-BEF5-C2EBCEAACD46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{81B96920-6058-4132-93AD-8AD5FE485BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81B96920-6058-4132-93AD-8AD5FE485BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81B96920-6058-4132-93AD-8AD5FE485BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{802A6F63-ABA8-4B2A-BEF5-C2EBCEAACD46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{802A6F63-ABA8-4B2A-BEF5-C2EBCEAACD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{802A6F63-ABA8-4B2A-BEF5-C2EBCEAACD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{802A6F63-ABA8-4B2A-BEF5-C2EBCEAACD46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

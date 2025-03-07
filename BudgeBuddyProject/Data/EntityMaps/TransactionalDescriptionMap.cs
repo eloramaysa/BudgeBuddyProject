@@ -8,16 +8,16 @@ namespace BudgeBuddyProject.Data.EntityMaps
     {
         public void Configure(EntityTypeBuilder<TransactionalDescriptionData> builder)
         {
-            // Tabela
             builder.ToTable("TransactionalDescription");
 
-            // Chave primária
             builder.HasKey(td => td.Id);
 
-            // Propriedades
             builder.Property(td => td.TransactionalDescription)
                    .IsRequired()
                    .HasMaxLength(255);
+
+            builder.Property(ft => ft.UserId)
+                   .IsRequired();
 
             builder.Property(td => td.CreatedDate)
                    .IsRequired();
@@ -32,6 +32,11 @@ namespace BudgeBuddyProject.Data.EntityMaps
             builder.Property(td => td.UpdatedBy)
                    .IsRequired()
                    .HasMaxLength(50);
+
+            builder.HasOne(ft => ft.User)
+                   .WithMany()
+                   .HasForeignKey(ft => ft.UserId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

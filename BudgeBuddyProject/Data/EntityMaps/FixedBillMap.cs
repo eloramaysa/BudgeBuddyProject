@@ -8,15 +8,13 @@ namespace BudgeBuddyProject.Data.EntityMaps
     {
         public void Configure(EntityTypeBuilder<FixedBillData> builder)
         {
-            // Tabela
             builder.ToTable("FixedBill");
 
-            // Chave primária
             builder.HasKey(fb => fb.Id);
 
-            // Propriedades
             builder.Property(fb => fb.UserId)
-                   .IsRequired();
+                   .IsRequired()
+                   .ValueGeneratedNever();
 
             builder.Property(fb => fb.Description)
                    .IsRequired()
@@ -25,8 +23,7 @@ namespace BudgeBuddyProject.Data.EntityMaps
             builder.Property(fb => fb.ExpireDate)
                    .IsRequired();
 
-            builder.Property(fb => fb.ExpireMonth)
-                   .IsRequired();
+            builder.Property(fb => fb.ExpireMonth);
 
             builder.Property(fb => fb.Value)
                    .IsRequired()
@@ -53,7 +50,8 @@ namespace BudgeBuddyProject.Data.EntityMaps
             builder.HasOne(fb => fb.User)
                    .WithMany()
                    .HasForeignKey(fb => fb.UserId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Restrict)
+                   .IsRequired();
         }
     }
 }

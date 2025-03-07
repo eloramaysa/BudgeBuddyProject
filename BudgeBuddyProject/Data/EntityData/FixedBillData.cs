@@ -7,7 +7,7 @@ namespace BudgeBuddyProject.Data.EntityData
         public Guid UserId { get; set; }
         public string Description { get; set; } = string.Empty;
         public int ExpireDate { get; set; }
-        public int ExpireMonth { get; set; }
+        public int? ExpireMonth { get; set; }
         public decimal Value { get; set; }
         public bool NotificationSent { get; set; }
 
