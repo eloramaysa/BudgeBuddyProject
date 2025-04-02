@@ -28,7 +28,7 @@ namespace BudgeBuddyProject.Queries
             return financialTransaction;
         }
 
-        public PagedResult<FinancialTransactionsDto> GetFinancialTransactionsByFilter(FinancialTransactionsFilterDto filterDto, int pageNumber, int pageSize)
+        public List<FinancialTransactionsDto> GetFinancialTransactionsByFilter(FinancialTransactionsFilterDto filterDto, int pageNumber, int pageSize)
         {
             var query = _applicationDbContext.FinancialTransactionsDatas
                 .Where(ft => ft.UserId == filterDto.UserId);
@@ -46,28 +46,23 @@ namespace BudgeBuddyProject.Queries
 
             var financialTransactions = query
                 .OrderBy(ft => ft.Day)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
                 .Select(ft => new FinancialTransactionsDto
                 {
                     Id = ft.Id,
                     UserId = ft.UserId,
                     TransactionalDescriptionId = ft.TransactionalDescriptionId,
+                    TransactionalDescription = ft.TransactionalDescription.TransactionalDescription,
                     FixedBillId = ft.FixedBillId,
+                    FixedBill = ft.FixedBill.Description,
                     TypeTransaction = (TypeTransactionEnum)ft.TypeTransaction,
                     Value = ft.Value,
                     Day = ft.Day,
-                    Month = ft.Month
+                    Month = ft.Month,
+                    Year = 2024
                 })
                 .ToList();
 
-            return new PagedResult<FinancialTransactionsDto>
-            {
-                Items = financialTransactions,
-                TotalItems = totalItems,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            return financialTransactions;
         }
     }
 }
