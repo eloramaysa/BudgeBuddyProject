@@ -1,5 +1,4 @@
-﻿using BudgeBuddyProject.Data.EntityData;
-using BudgeBuddyProject.Dtos;
+﻿using BudgeBuddyProject.Dtos;
 using BudgeBuddyProject.Queries.Interfaces;
 using BudgeBuddyProject.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +13,6 @@ namespace BudgeBuddyProject.Controllers
         private readonly ITransactionalDescriptionService _transactionalDescriptionService = transactionalDescriptionService;
         private readonly ITransactionalDescriptionQuery _transactionalDescriptionQuery = transactionalDescriptionQuery;
 
-        // GET: api/transactionaldescriptions/{id}
         [HttpGet("{id}")]
         public IActionResult GetTransactionalDescriptionById(Guid id)
         {
@@ -26,7 +24,6 @@ namespace BudgeBuddyProject.Controllers
             return Ok(transactionalDescription);
         }
 
-        // GET: api/TransactionalDescriptions/user/{userId}
         [HttpGet("user/{userId}")]
         public IActionResult GetTransactionalDescriptionsByUserId(Guid userId, int pageNumber = 1, int pageSize = 10)
         {
@@ -34,7 +31,6 @@ namespace BudgeBuddyProject.Controllers
             return Ok(transactionalDescriptions.Items);
         }
 
-        // POST: api/transactionaldescriptions
         [HttpPost]
         public IActionResult CreateTransactionalDescription([FromBody] TransactionalDescriptionDto transactionalDescriptionDto)
         {
@@ -58,7 +54,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // PUT: api/transactionaldescriptions/{id}
         [HttpPut("{id}")]
         public IActionResult UpdateTransactionalDescription(Guid id, [FromBody] TransactionalDescriptionDto transactionalDescriptionDto)
         {
@@ -82,7 +77,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // DELETE: api/transactionaldescriptions/{id}
         [HttpDelete("{id}")]
         public IActionResult DeleteTransactionalDescription(Guid id)
         {

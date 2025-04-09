@@ -7,13 +7,12 @@ namespace BudgeBuddyProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BudgeTargetController(IBudgeTargetService budgeTargetService, IBudgeTargetQuery budgeTargetQuery) 
+    public class BudgeTargetController(IBudgeTargetService budgeTargetService, IBudgeTargetQuery budgeTargetQuery)
     : ControllerBase
     {
         private readonly IBudgeTargetService _budgeTargetService = budgeTargetService;
         private readonly IBudgeTargetQuery _budgeTargetQuery = budgeTargetQuery;
 
-        // GET: api/budgetargets/{id}
         [HttpGet("{id}")]
         public IActionResult GetBudgeTargetById(Guid id)
         {
@@ -25,7 +24,6 @@ namespace BudgeBuddyProject.Controllers
             return Ok(budgeTarget);
         }
 
-        // GET: api/budgetargets/user/{userId}
         [HttpGet("user/{userId}")]
         public IActionResult GetBudgeTargetsByUserId(Guid userId, int pageNumber = 1, int pageSize = 10)
         {
@@ -33,7 +31,6 @@ namespace BudgeBuddyProject.Controllers
             return Ok(budgeTargets);
         }
 
-        // POST: api/budgetargets
         [HttpPost]
         public IActionResult CreateBudgeTarget([FromBody] BudgeTargetDto budgeTargetDto)
         {
@@ -43,7 +40,7 @@ namespace BudgeBuddyProject.Controllers
             try
             {
                 _budgeTargetService.CreateBudgeTarget(budgeTargetDto);
-                return CreatedAtAction("", new { id = budgeTargetDto.Id }, budgeTargetDto);
+                return Ok();
             }
             catch (ArgumentException ex)
             {
@@ -55,7 +52,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // PUT: api/budgetargets/{id}
         [HttpPut("{id}")]
         public IActionResult UpdateBudgeTarget(Guid id, [FromBody] BudgeTargetDto budgeTargetDto)
         {
@@ -77,7 +73,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // DELETE: api/budgetargets/{id}
         [HttpDelete("{id}")]
         public IActionResult DeleteBudgeTarget(Guid id)
         {

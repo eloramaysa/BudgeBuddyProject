@@ -6,16 +6,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BudgeBuddyProject.Repositories
 {
-    public class UserRepository : RepositoryBase, IUserRepository
+    public class UserRepository(ApplicationDbContext applicationDbContext) : RepositoryBase, IUserRepository
     {
-        private readonly ApplicationDbContext _applicationDbContext;
-        private readonly PasswordHasher<UserData> _passwordHasher;
-
-        public UserRepository(ApplicationDbContext applicationDbContext)
-        {
-            _applicationDbContext = applicationDbContext;
-            _passwordHasher = new PasswordHasher<UserData>();
-        }
+        private readonly ApplicationDbContext _applicationDbContext = applicationDbContext;
+        private readonly PasswordHasher<UserData> _passwordHasher = new PasswordHasher<UserData>();
 
         public void AddUser(UserDomain user)
         {

@@ -7,13 +7,12 @@ namespace BudgeBuddyProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FixedBillsController(IFixedBillService fixedBillService, IFixedBillQuery fixedBillQuery) 
+    public class FixedBillsController(IFixedBillService fixedBillService, IFixedBillQuery fixedBillQuery)
     : ControllerBase
     {
         private readonly IFixedBillService _fixedBillService = fixedBillService;
         private readonly IFixedBillQuery _fixedBillQuery = fixedBillQuery;
 
-        // GET: api/fixedbills/{id}
         [HttpGet("{id}")]
         public IActionResult GetFixedBillById(Guid id)
         {
@@ -25,7 +24,6 @@ namespace BudgeBuddyProject.Controllers
             return Ok(fixedBill);
         }
 
-        // GET: api/Fixedbills/user/{userId}
         [HttpGet("user/{userId}")]
         public IActionResult GetFixedBillsByUserId(Guid userId)
         {
@@ -55,7 +53,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // PUT: api/fixedbills/{id}
         [HttpPut("{id}")]
         public IActionResult UpdateFixedBill(Guid id, [FromBody] FixedBillDto fixedBillDto)
         {
@@ -77,7 +74,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // DELETE: api/fixedbills/{id}
         [HttpDelete("{id}")]
         public IActionResult DeleteFixedBill(Guid id)
         {

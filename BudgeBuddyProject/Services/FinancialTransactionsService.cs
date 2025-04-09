@@ -6,18 +6,12 @@ using FluentValidation;
 
 namespace BudgeBuddyProject.Services
 {
-    public class FinancialTransactionsService : IFinancialTransactionsService
+    public class FinancialTransactionsService(
+        IFinancialTransactionalRepository financialTransactionsRepository,
+        IValidator<FinancialTransactionsDto> financialTransactionsValidator) : IFinancialTransactionsService
     {
-        private readonly IFinancialTransactionalRepository _financialTransactionsRepository;
-        private readonly IValidator<FinancialTransactionsDto> _financialTransactionsValidator;
-
-        public FinancialTransactionsService(
-            IFinancialTransactionalRepository financialTransactionsRepository,
-            IValidator<FinancialTransactionsDto> financialTransactionsValidator)
-        {
-            _financialTransactionsRepository = financialTransactionsRepository;
-            _financialTransactionsValidator = financialTransactionsValidator;
-        }
+        private readonly IFinancialTransactionalRepository _financialTransactionsRepository = financialTransactionsRepository;
+        private readonly IValidator<FinancialTransactionsDto> _financialTransactionsValidator = financialTransactionsValidator;
 
         public void CreateFinancialTransaction(FinancialTransactionsDto financialTransactionsDto)
         {

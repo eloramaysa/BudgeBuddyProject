@@ -6,16 +6,10 @@ using FluentValidation;
 
 namespace BudgeBuddyProject.Services
 {
-    public class BudgeTargetService : IBudgeTargetService
+    public class BudgeTargetService(IBudgeTargetRepository budgeTargetRepository, IValidator<BudgeTargetDto> budgeTargetValidator) : IBudgeTargetService
     {
-        private readonly IBudgeTargetRepository _budgeTargetRepository;
-        private readonly IValidator<BudgeTargetDto> _budgeTargetValidator;
-
-        public BudgeTargetService(IBudgeTargetRepository budgeTargetRepository, IValidator<BudgeTargetDto> budgeTargetValidator)
-        {
-            _budgeTargetRepository = budgeTargetRepository;
-            _budgeTargetValidator = budgeTargetValidator;
-        }
+        private readonly IBudgeTargetRepository _budgeTargetRepository = budgeTargetRepository;
+        private readonly IValidator<BudgeTargetDto> _budgeTargetValidator = budgeTargetValidator;
 
         public void CreateBudgeTarget(BudgeTargetDto budgeTargetDto)
         {

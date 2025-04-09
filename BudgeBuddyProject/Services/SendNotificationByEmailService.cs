@@ -17,11 +17,11 @@ namespace BudgeBuddyProject.Services
         public async Task SendNotificationByEmail()
         {
             var usersWithFixedBill = _userAndFixedBillToSendNotificationQuery.GetUsersAndFixedBillToSendNotificationDomains();
-            //foreach (var user in usersWithFixedBill)
-            //{
-            var message = "Uma mensagem teste";
-               await _emailService.SendEmailAsync("eloramaysa@gmail.com", "Alerta de Pagamento de contas fixas", message, "teste");
-            //}
+            foreach (var user in usersWithFixedBill)
+            {
+                var message = "Uma mensagem teste";
+                await _emailService.SendEmailAsync(user.Email, "Alerta de Pagamento de contas fixas", message, GenerateNotificationMessage(user));
+            }
 
             UpdateFixedBillToNotificationSent(usersWithFixedBill);
         }
@@ -30,11 +30,9 @@ namespace BudgeBuddyProject.Services
         {
             var message = new StringBuilder();
 
-            // Saudação personalizada
             message.AppendLine($"Olá {user.Name},");
             message.AppendLine("Suas contas fixas estão prestes a expirar. Aqui estão as contas que precisam ser pagas:");
 
-            // Iterando sobre as contas quase expiradas
             foreach (var bill in user.FixedBillsAlmostExpired)
             {
                 message.AppendLine($"- Descrição: {bill.BillDescription}");

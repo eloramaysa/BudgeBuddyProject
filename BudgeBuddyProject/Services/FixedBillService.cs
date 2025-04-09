@@ -6,16 +6,10 @@ using FluentValidation;
 
 namespace BudgeBuddyProject.Services
 {
-    public class FixedBillService : IFixedBillService
+    public class FixedBillService(IFixedBillRepository fixedBillRepository, IValidator<FixedBillDto> fixedBillValidator) : IFixedBillService
     {
-        private readonly IFixedBillRepository _fixedBillRepository;
-        private readonly IValidator<FixedBillDto> _fixedBillValidator;
-
-        public FixedBillService(IFixedBillRepository fixedBillRepository, IValidator<FixedBillDto> fixedBillValidator)
-        {
-            _fixedBillRepository = fixedBillRepository;
-            _fixedBillValidator = fixedBillValidator;
-        }
+        private readonly IFixedBillRepository _fixedBillRepository = fixedBillRepository;
+        private readonly IValidator<FixedBillDto> _fixedBillValidator = fixedBillValidator;
 
         public void CreateFixedBill(FixedBillDto fixedBillDto)
         {
