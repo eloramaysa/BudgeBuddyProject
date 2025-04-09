@@ -5,14 +5,9 @@ using BudgeBuddyProjects.Data.Context;
 
 namespace BudgeBuddyProject.Repositories
 {
-    public class FinancialTransactionalRepository : RepositoryBase, IFinancialTransactionalRepository
+    public class FinancialTransactionalRepository(ApplicationDbContext applicationDbContext) : RepositoryBase, IFinancialTransactionalRepository
     {
-        private readonly ApplicationDbContext _applicationDbContext;
-
-        public FinancialTransactionalRepository(ApplicationDbContext applicationDbContext)
-        {
-            _applicationDbContext = applicationDbContext;
-        }
+        private readonly ApplicationDbContext _applicationDbContext = applicationDbContext;
 
         public void AddTransactional(FinancialTransactionsDomain transactionDomain)
         {

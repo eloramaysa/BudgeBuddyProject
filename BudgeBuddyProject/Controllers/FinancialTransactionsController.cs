@@ -7,13 +7,12 @@ namespace BudgeBuddyProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FinancialTransactionsController(IFinancialTransactionsService financialTransactionsService, IFinancialTransactionalQuery financialTransactionalQuery) 
+    public class FinancialTransactionsController(IFinancialTransactionsService financialTransactionsService, IFinancialTransactionalQuery financialTransactionalQuery)
     : ControllerBase
     {
         private readonly IFinancialTransactionsService _financialTransactionsService = financialTransactionsService;
         private readonly IFinancialTransactionalQuery _financialTransactionalQuery = financialTransactionalQuery;
 
-        // GET: api/financialtransactions/{id}
         [HttpGet("{id}")]
         public IActionResult GetFinancialTransactionById(Guid id)
         {
@@ -25,7 +24,6 @@ namespace BudgeBuddyProject.Controllers
             return Ok(financialTransaction);
         }
 
-        // GET: api/financialtransactions/filter
         [HttpGet("filter")]
         public IActionResult GetFinancialTransactionsByFilter([FromQuery] FinancialTransactionsFilterDto filterDto, int pageNumber = 1, int pageSize = 10)
         {
@@ -33,7 +31,6 @@ namespace BudgeBuddyProject.Controllers
             return Ok(financialTransactions);
         }
 
-        // POST: api/FinancialTransactions
         [HttpPost]
         public IActionResult CreateFinancialTransaction([FromBody] FinancialTransactionsDto financialTransactionsDto)
         {
@@ -55,7 +52,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // PUT: api/financialtransactions/{id}
         [HttpPut("{id}")]
         public IActionResult UpdateFinancialTransaction(Guid id, [FromBody] FinancialTransactionsDto financialTransactionsDto)
         {
@@ -77,7 +73,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // DELETE: api/financialtransactions/{id}
         [HttpDelete("{id}")]
         public IActionResult DeleteFinancialTransaction(Guid id)
         {

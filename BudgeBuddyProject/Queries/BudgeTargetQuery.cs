@@ -1,5 +1,4 @@
-﻿using BudgeBuddyProject.Data.EntityData;
-using BudgeBuddyProject.Dtos;
+﻿using BudgeBuddyProject.Dtos;
 using BudgeBuddyProject.Queries.Interfaces;
 using BudgeBuddyProjects.Data.Context;
 

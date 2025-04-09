@@ -5,14 +5,9 @@ using BudgeBuddyProjects.Data.Context;
 
 namespace BudgeBuddyProject.Repositories
 {
-    public class TransactionalDescriptionRepository : RepositoryBase, ITransactionalDescriptionRepository
+    public class TransactionalDescriptionRepository(ApplicationDbContext applicationDbContext) : RepositoryBase, ITransactionalDescriptionRepository
     {
-        private readonly ApplicationDbContext _applicationDbContext;
-
-        public TransactionalDescriptionRepository(ApplicationDbContext applicationDbContext)
-        {
-            _applicationDbContext = applicationDbContext;
-        }
+        private readonly ApplicationDbContext _applicationDbContext = applicationDbContext;
 
         public void AddTransactionalDescription(TransactionalDescriptionDomain transactionalDescriptionDomain)
         {

@@ -13,7 +13,6 @@ namespace BudgeBuddyProject.Controllers
         private readonly IUserService _userService = userService;
         private readonly IUserQuery _userQuery = userQuery;
 
-        // GET: api/users/{id}
         [HttpGet("{id}")]
         public IActionResult GetUserById(Guid id)
         {
@@ -33,7 +32,6 @@ namespace BudgeBuddyProject.Controllers
             return Ok(users);
         }
 
-        // POST: api/users
         [HttpPost]
         public IActionResult CreateUser([FromBody] UserDto userDto)
         {
@@ -55,7 +53,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // PUT: api/users/{idUser}
         [HttpPut("{idUser}")]
         public IActionResult UpdateUser(Guid idUser, [FromBody] UserDto userDto)
         {
@@ -77,7 +74,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // Post: api/users/login
         [HttpPost("login")]
         public IActionResult LoginUser([FromBody] LoginUserDto loginUserDto)
         {
@@ -87,9 +83,9 @@ namespace BudgeBuddyProject.Controllers
             try
             {
                 var loginValid = _userService.LoginUser(loginUserDto.Email, loginUserDto.Password);
-                if (loginValid.Id == Guid.Empty) 
+                if (loginValid.Id == Guid.Empty)
                     return Unauthorized();
-                else 
+                else
                     return Ok(loginValid);
             }
             catch (ArgumentException ex)
@@ -102,7 +98,6 @@ namespace BudgeBuddyProject.Controllers
             }
         }
 
-        // DELETE: api/users/{idUser}
         [HttpDelete("{idUser}")]
         public IActionResult DeleteUser(Guid idUser)
         {

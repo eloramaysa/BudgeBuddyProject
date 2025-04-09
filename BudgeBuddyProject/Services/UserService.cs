@@ -6,20 +6,13 @@ using FluentValidation;
 
 namespace BudgeBuddyProject.Services
 {
-    public class UserService : IUserService
+    public class UserService(IUserRepository userRepository, IValidator<UserDto> userValidator) : IUserService
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IValidator<UserDto> _userValidator;
-
-        public UserService(IUserRepository userRepository, IValidator<UserDto> userValidator)
-        {
-            _userRepository = userRepository;
-            _userValidator = userValidator;
-        }
+        private readonly IUserRepository _userRepository = userRepository;
+        private readonly IValidator<UserDto> _userValidator = userValidator;
 
         public UserDto CreateUser(UserDto userDto)
         {
-            //validar se tem o mesmo email
             var validator = _userValidator.Validate(userDto);
 
             if (validator.IsValid)
@@ -36,7 +29,6 @@ namespace BudgeBuddyProject.Services
 
         public UserDto UpdateUser(UserDto userDto)
         {
-            //validar se tem o mesmo email
             var validator = _userValidator.Validate(userDto);
 
             if (validator.IsValid)

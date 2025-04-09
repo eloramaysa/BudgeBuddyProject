@@ -5,14 +5,9 @@ using BudgeBuddyProjects.Data.Context;
 
 namespace BudgeBuddyProject.Repositories
 {
-    public class BudgeTargetRepository : RepositoryBase, IBudgeTargetRepository
+    public class BudgeTargetRepository(ApplicationDbContext applicationDbContext) : RepositoryBase, IBudgeTargetRepository
     {
-        private readonly ApplicationDbContext _applicationDbContext;
-
-        public BudgeTargetRepository(ApplicationDbContext applicationDbContext)
-        {
-            _applicationDbContext = applicationDbContext;
-        }
+        private readonly ApplicationDbContext _applicationDbContext = applicationDbContext;
 
         public void AddBugdeTarget(BudgeTargetDomain fixedBill)
         {
